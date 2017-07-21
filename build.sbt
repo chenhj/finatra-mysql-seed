@@ -35,7 +35,8 @@ lazy val versions = new {
   val finatra = "2.1.4"
   val logback = "1.1.6"
   val guice = "4.0"
-  val getquill = "0.5.0"
+  //val getquill = "0.5.0"
+  val getquill = "0.6.0"
   val slick = "3.1.1"
   val hikaricp = "2.4.5"
   val slickJoda = "2.1.0"
@@ -54,6 +55,10 @@ lazy val versions = new {
 }
 
 libraryDependencies ++= Seq(
+
+  "org.apache.thrift" % "libthrift" % "0.6.1",
+  "com.twitter.common" % "metrics" % "0.0.39",
+  "org.slf4j" % "slf4j-log4j12" % "1.7.16",
 
   // finatra
   "com.twitter.finatra" %% "finatra-http" % versions.finatra,
@@ -111,5 +116,12 @@ libraryDependencies ++= Seq(
   "org.specs2" %% "specs2" % versions.specs2 % "test"
 )
 
+//排除依赖方法
+excludeDependencies ++=Seq(
+  "org.slf4j" % "log4j-over-slf4j"
+  ,"org.slf4j" % "slf4j-nop"
+  ,"org.slf4j" % "slf4j-jdk14"
+
+)
 
 Revolver.settings
